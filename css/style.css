@@ -71,6 +71,12 @@ ul {
     font-size: .8rem;
 }
 
+.alert p:last-child,
+header .last-seen,
+footer input{
+    font-size: .7rem;
+}
+
 /* || ASIDE */
 aside {
     width: 10%;
@@ -133,7 +139,6 @@ header i {
 }
 
 .alert p:last-child{
-    font-size: .7rem;
     text-decoration: underline;
     color: var(--footer-icons-grey);
 }
@@ -177,7 +182,6 @@ header i {
 }
 
 header .last-seen{
-    font-size: .7rem;
     color: var(--footer-icons-grey);
 }
 
@@ -220,6 +224,19 @@ header .last-seen{
 footer {
     background-color: var(--footer-grey);
     border-left: 1.5px solid #dedede;
+}
+
+footer i{
+    color: var(--footer-icons-grey);
+    margin: 0 1rem;
+    font-size: 1.2rem;
+}
+
+footer input{
+    flex-grow: 1;
+    border: none;
+    padding: .7rem;
+    border-radius: 4px;
 }
 
 
