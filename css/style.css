@@ -19,17 +19,38 @@ body {
     --active-user-grey: #e9ebeb;
     --search-bar-grey: #fafafa;
     --lightblue: #8edafc;
-    --main-background-height: 30px;
-}
-
-.bigger-container{
-    width: 100vw;
-    height: 100vh;
+    --main-background-height: 25px;
+    --header-height: 50px;
 }
 
 /* || UTILS */
 .flex{
     display: flex;
+}
+
+/* || GENERAL */
+.bigger-container{
+    width: 100vw;
+    height: 100vh;
+}
+
+#users header,
+#chat header,
+#chat footer {
+    height: var(--header-height);
+}
+
+header {
+    background-color: var(--header-grey);
+}
+
+#users .alert,
+.users-list li{
+    height: 55px;
+}
+
+ul {
+    list-style-type: none;
 }
 
 /* || ASIDE */
@@ -38,11 +59,11 @@ aside {
 }
 
 aside section.background-green{
-    height: 125px;
+    height: 110px;
 }
 
 aside section.background-grey{
-    height: calc(100% - 100px);
+    height: calc(100% - 110px);
 }
 
 /* || MAIN */
@@ -58,6 +79,43 @@ main section.background-grey {
 .boolzapp {
     height: calc(100% - (var(--main-background-height) *2));
 }
+
+/* || #users */
+#users {
+    width: 35%;
+    background-color: blanchedalmond;
+}
+
+#users .alert {
+    background-color: var(--lightblue);
+}
+
+#users .nav{
+    height: 40px;
+    background-color: var(--search-bar-grey);
+}
+
+.users-list li{
+    background-color: white;
+    border-bottom: 1px solid var(--active-user-grey);
+}
+
+/* || #chat */
+#chat {
+    width: 65%;
+    background-color: darkorchid;
+    flex-direction: column;
+}
+
+#chat .chat{
+    height: calc(100% - var(--header-height) * 2);
+    overflow-y: auto;
+}
+
+footer {
+    background-color: var(--footer-grey);
+}
+
 
 
 /* ** STYLE */
