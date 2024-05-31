@@ -18,13 +18,16 @@
 <body>
     <div id="app">
         <div class="bigger-container flex">
+            <!-- || ASIDE -->
             <aside>
                 <section class="background-green"></section>
                 <section class="background-grey"></section>
             </aside>
+            <!-- || MAIN -->
             <main>
                 <section class="background-green"></section>
                 <section class="boolzapp flex">
+                    <!-- || users -->
                     <section id="users">
                         <header class="flex align-center space-between">
                             <div class="flex align-center">
@@ -56,7 +59,9 @@
                             </ul>
                         </div>
                     </section>
+                    <!-- || chat -->
                     <section id="chat" class="flex">
+
                         <header class="flex align-center space-between">
                             <div class="flex align-center">
                                 <img :src="`${contacts[0].avatar}.jpg`" alt="User avatar">
@@ -71,12 +76,36 @@
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                             </div>
                         </header>
-                        <div class="chat"></div>
+
+                        <div class="chat">
+                            <ul>
+                                <li class="message flex sent">
+                                    <div class="message-balloon flex">
+                                        <p>Tutto fatto!</p>
+                                        <span>12.00</span>
+                                    </div>
+                                </li>
+                                <li class="message flex received">
+                                    <div class="message-balloon flex">
+                                        <p>Tutto fatto!</p>
+                                        <span>12.00</span>
+                                    </div>
+                                </li>
+                                <li class="message flex received">
+                                    <div class="message-balloon flex">
+                                        <p>Tutto fatto!</p>
+                                        <span>12.00</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
                         <footer></footer>
                     </section>
                 </section>
                 <section class="background-grey"></section>
             </main>
+            <!-- || ASIDE -->
             <aside>
                 <section class="background-green"></section>
                 <section class="background-grey"></section>

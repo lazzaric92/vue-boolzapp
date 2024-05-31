@@ -40,6 +40,12 @@ body {
     justify-content: space-between;
 }
 
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
 /* || GENERAL */
 .bigger-container{
     width: 100vw;
@@ -65,7 +71,8 @@ ul {
     list-style-type: none;
 }
 
-.user-name {
+.user-name,
+.message p {
     font-size: .8rem;
 }
 
@@ -167,6 +174,36 @@ header .last-seen{
     height: calc(100% - var(--header-height) * 2);
     overflow-y: auto;
     background-image: url(../img/mine.jpg);
+    padding: 2rem 4rem;
+}
+
+.message {
+    width: 100%;
+}
+
+.message.sent{
+    justify-content: flex-end;
+}
+
+.message.received{
+    justify-content: flex-start;
+}
+
+.message-balloon{
+    width: 35%;
+    padding: .2rem .3rem;
+    border-radius: 8px;
+    margin-bottom: .5rem;
+}
+
+.message p{
+    flex-grow: 1;
+    padding: .5rem .8rem;
+}
+
+.message span {
+    align-self: flex-end;
+    font-size: .5rem;
 }
 
 footer {
@@ -183,4 +220,12 @@ footer {
 
 .background-grey{
     background-color: var(--background-grey);
+}
+
+.message.sent .message-balloon {
+    background-color: var(--message-sent-green);
+}
+
+.message.received .message-balloon{
+    background-color: white;
 }
