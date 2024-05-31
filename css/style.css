@@ -31,6 +31,11 @@ body {
 .align-center {
     align-items: center;
 }
+
+.align-start{
+    align-items: flex-start;
+}
+
 .space-between{
     justify-content: space-between;
 }
@@ -58,6 +63,10 @@ header {
 
 ul {
     list-style-type: none;
+}
+
+.user-name {
+    font-size: .8rem;
 }
 
 /* || ASIDE */
@@ -98,10 +107,6 @@ header img {
     margin: 0 .5rem;
 }
 
-header .user-name {
-    font-size: .8rem;
-}
-
 header > div:last-child{
     margin-right: .5rem;
 }
@@ -123,6 +128,24 @@ header i {
 .users-list li{
     background-color: white;
     border-top: 1px solid var(--active-user-grey);
+    padding: .3rem;
+}
+
+.users-list li img{
+    width: 45px;
+    border-radius: 50%;
+    margin: 0 .5rem;
+    align-self: center;
+}
+
+.users-list .user-name{
+    margin: .1rem 0;
+}
+
+.users-list .last-message,
+.users-list .last-seen {
+    font-size: .6rem;
+    color: var(--header-icons-grey);
 }
 
 /* || #chat */

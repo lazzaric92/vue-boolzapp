@@ -41,9 +41,18 @@
                         <div class="nav"></div>
                         <div class="users-list-wrapper">
                             <ul class="users-list">
-                                <li></li>
-                                <li></li>
-                                <li></li>
+                                <li class="flex space-between" v-for="(contact, index) in contacts" :id="contact.index">
+                                    <div class="flex align-start">
+                                        <img :src="`${contact.avatar}.jpg`" alt="User avatar">
+                                        <div>
+                                            <p class="user-name"> {{ contact.name}} </p>
+                                            <p class="last-message">Ultimo messaggio inviato</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="last-seen">12.00</span>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </section>
@@ -53,7 +62,7 @@
                                 <img :src="`${contacts[0].avatar}.jpg`" alt="User avatar">
                                 <div>
                                     <p class="user-name"> {{ contacts[0].name}} </p>
-                                    <p class="last-seen">Ultimo accesso oggi alle</p>
+                                    <p class="last-seen">Ultimo accesso oggi alle 12.00</p>
                                 </div>
                             </div>
                             <div class="flex align-center">
