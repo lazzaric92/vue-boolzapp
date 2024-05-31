@@ -7,3 +7,64 @@
 body {
     font-family: "Lato", sans-serif;
 }
+
+:root {
+    --background-green: #009688;
+    --message-sent-green: #d5f9ba;
+    --background-grey: #dbdbd3;
+    --header-grey: #eaeaea;
+    --header-icons-grey: #b1b1b1;
+    --footer-grey: #f3eeea;
+    --footer-icons-grey: #6b7376;
+    --active-user-grey: #e9ebeb;
+    --search-bar-grey: #fafafa;
+    --lightblue: #8edafc;
+    --main-background-height: 30px;
+}
+
+.bigger-container{
+    width: 100vw;
+    height: 100vh;
+}
+
+/* || UTILS */
+.flex{
+    display: flex;
+}
+
+/* || ASIDE */
+aside {
+    width: 10%;
+}
+
+aside section.background-green{
+    height: 125px;
+}
+
+aside section.background-grey{
+    height: calc(100% - 100px);
+}
+
+/* || MAIN */
+main {
+    width: 80%;
+}
+
+main section.background-green,
+main section.background-grey {
+    height: var(--main-background-height);
+}
+
+.boolzapp {
+    height: calc(100% - (var(--main-background-height) *2));
+}
+
+
+/* ** STYLE */
+.background-green{
+    background-color: var(--background-green);
+}
+
+.background-grey{
+    background-color: var(--background-grey);
+}
