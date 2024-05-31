@@ -40,8 +40,19 @@
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                             </div>
                         </header>
-                        <div class="alert"></div>
+
+                        <div class="alert flex align-center">
+                            <div class="flex align-center">
+                                <i class="fa-solid fa-bell-slash"></i>
+                            </div>
+                            <div>
+                                <p>Ricevi notifiche di nuovi messaggi</p>
+                                <p>Attiva notifiche desktop</p>
+                            </div>
+                        </div>
+
                         <div class="nav"></div>
+
                         <div class="users-list-wrapper">
                             <ul class="users-list">
                                 <li class="flex space-between" v-for="(contact, index) in contacts" :id="contact.index">

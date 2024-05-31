@@ -40,12 +40,6 @@ body {
     justify-content: space-between;
 }
 
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
 /* || GENERAL */
 .bigger-container{
     width: 100vw;
@@ -72,7 +66,8 @@ ul {
 }
 
 .user-name,
-.message p {
+.message p,
+.alert p {
     font-size: .8rem;
 }
 
@@ -125,6 +120,22 @@ header i {
 
 #users .alert {
     background-color: var(--lightblue);
+}
+
+.alert > div:first-child {
+    background-color: white;
+    border-radius: 50%;
+    color: var(--lightblue);
+    width: 35px;
+    height: 35px;
+    justify-content: center;
+    margin: 0 .5rem 0 .8rem;
+}
+
+.alert p:last-child{
+    font-size: .7rem;
+    text-decoration: underline;
+    color: var(--footer-icons-grey);
 }
 
 #users .nav{
