@@ -26,7 +26,17 @@
                 <section class="background-green"></section>
                 <section class="boolzapp flex">
                     <section id="users">
-                        <header></header>
+                        <header class="flex align-center space-between">
+                            <div class="flex align-center">
+                                <img :src="`${myProfile.avatar}.jpg`" alt="Mio avatar">
+                                <span class="user-name"> {{ myProfile.name}} </span>
+                            </div>
+                            <div class="flex align-center">
+                                <i class="fa-solid fa-circle-notch"></i>
+                                <i class="fa-solid fa-message"></i>
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </div>
+                        </header>
                         <div class="alert"></div>
                         <div class="nav"></div>
                         <div class="users-list-wrapper">
@@ -38,7 +48,20 @@
                         </div>
                     </section>
                     <section id="chat" class="flex">
-                        <header></header>
+                        <header class="flex align-center space-between">
+                            <div class="flex align-center">
+                                <img :src="`${contacts[0].avatar}.jpg`" alt="User avatar">
+                                <div>
+                                    <p class="user-name"> {{ contacts[0].name}} </p>
+                                    <p class="last-seen">Ultimo accesso oggi alle</p>
+                                </div>
+                            </div>
+                            <div class="flex align-center">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <i class="fa-solid fa-paperclip"></i>
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </div>
+                        </header>
                         <div class="chat"></div>
                         <footer></footer>
                     </section>
