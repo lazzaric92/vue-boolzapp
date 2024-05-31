@@ -65,6 +65,12 @@ ul {
     list-style-type: none;
 }
 
+i,
+.users-list li,
+.alert p:last-child{
+    cursor: pointer;
+}
+
 .user-name,
 .message p,
 .alert p {
@@ -146,6 +152,28 @@ header i {
 #users .nav{
     height: 40px;
     background-color: var(--search-bar-grey);
+    padding: .3rem;
+}
+
+.nav> div{
+    background-color: white;
+    border-radius: 4px;
+    color: var(--footer-icons-grey);
+    border: 1px solid var(--footer-grey);
+}
+
+.nav button {
+    background-color: transparent;
+    border: none;
+    padding: .4rem 1.5rem;
+    color: var(--header-icons-grey);
+}
+
+.nav input {
+    flex-grow: 1;
+    border: none;
+    padding-left: .5rem;
+    border-left: 1px solid var(--search-bar-grey);
 }
 
 .users-list li{
@@ -256,4 +284,8 @@ footer input{
 
 .message.received .message-balloon{
     background-color: white;
+}
+
+.users-list li.active{
+    background-color: var(--active-user-grey);
 }
