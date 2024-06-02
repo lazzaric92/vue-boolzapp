@@ -68,11 +68,11 @@
                                         <img :src="`${contact.avatar}.jpg`" alt="User avatar">
                                         <div>
                                             <p class="user-name"> {{ contact.name}} </p>
-                                            <p class="last-message">Ultimo messaggio inviato</p>
+                                            <p class="last-message"> {{ getLastMessage(contact.messages) }} </p>
                                         </div>
                                     </div>
                                     <div>
-                                        <span class="last-seen">12.00</span>
+                                        <span class="last-seen">{{ getLastMessageDate(contact.messages) }}</span>
                                     </div>
                                 </li>
                             </ul>
@@ -86,7 +86,10 @@
                                 <img :src="`${contacts[activeUser].avatar}.jpg`" alt="User avatar">
                                 <div>
                                     <p class="user-name"> {{ contacts[activeUser].name}} </p>
-                                    <p class="last-seen">Ultimo accesso oggi alle 12.00</p>
+                                    <span class="last-seen">Ultimo accesso il </span>
+                                    <span class="last-seen">
+                                        {{ getLastMessageDate(contacts[activeUser].messages) }}
+                                    </span>
                                 </div>
                             </div>
                             <div class="flex align-center">
@@ -102,7 +105,7 @@
                                     <li class="message flex" v-for="(message, index) in contact.messages" :key="message.index" :class="(message.status === 'sent') ? 'sent' : 'received' ">
                                         <div class="message-balloon flex">
                                             <p> {{ message.message }} </p>
-                                            <span> {{ message.date }} </span>
+                                            <span> {{ getMessagesTime(message) }} </span>
                                         </div>
                                     </li>
                                 </ul>

@@ -197,7 +197,7 @@ createApp({
             this.newMessageContent = '';
         },
 
-        getMessageTime : function(){
+        messageTime : function(){
             const newDate = Date();
             const newDateElements = newDate.split(' ');
             const [weekDay, month, day, year, time] = newDateElements;
@@ -208,7 +208,7 @@ createApp({
         getReply: function(messageArray){
             setTimeout(() => {
                 const newReceivedMessage = {
-                    date: this.getMessageTime(),
+                    date: this.messageTime(),
                     message: 'Ok',
                     status: 'received'
                 }
@@ -220,6 +220,23 @@ createApp({
         newConversation: function(messageArray){
             this.sendMessage(messageArray);
             this.getReply(messageArray);
+        },
+
+        getMessagesTime: function(element){
+            const dateAndTime = element.date.split(' ');
+            const [date, time] = dateAndTime;
+            const splitTime = time.split(':');
+            return `${splitTime[0]}:${splitTime[1]}`; 
+        },
+
+        getLastMessage: function(messageArray){
+            const lastMessage = messageArray[messageArray.length - 1];
+            return lastMessage.message;
+        },
+
+        getLastMessageDate: function(messageArray){
+            const lastMessage = messageArray[messageArray.length - 1];
+            return lastMessage.date;
         }
     }
 }).mount('#app');
