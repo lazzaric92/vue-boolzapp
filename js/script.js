@@ -175,6 +175,11 @@ createApp({
             activeUser: 0,
 
         }
+    },
+    methods: {
+        changeActiveUser: function(elIndex){
+            this.activeUser = elIndex;
+        }
     }
 }).mount('#app');
 

@@ -63,7 +63,7 @@
                         <!-- # users-list -->
                         <div class="users-list-wrapper">
                             <ul class="users-list">
-                                <li class="flex space-between" v-for="(contact, index) in contacts" :id="contact.index" :class="(index === activeUser) ? 'active' : '' ">
+                                <li class="flex space-between" v-for="(contact, index) in contacts" :id="contact.index" :class="(index === activeUser) ? 'active' : '' "  @click="changeActiveUser(index)">
                                     <div class="flex align-start">
                                         <img :src="`${contact.avatar}.jpg`" alt="User avatar">
                                         <div>
