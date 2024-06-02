@@ -29,6 +29,7 @@
                 <section class="boolzapp flex">
                     <!-- || users -->
                     <section id="users">
+                        <!-- # header -->
                         <header class="flex align-center space-between">
                             <div class="flex align-center">
                                 <img :src="`${myProfile.avatar}.jpg`" alt="Mio avatar">
@@ -40,7 +41,7 @@
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                             </div>
                         </header>
-
+                        <!-- # alert -->
                         <div class="alert flex align-center">
                             <div class="flex align-center">
                                 <i class="fa-solid fa-bell-slash"></i>
@@ -50,7 +51,7 @@
                                 <p>Attiva notifiche desktop</p>
                             </div>
                         </div>
-
+                        <!-- # nav -->
                         <div class="nav">
                             <div class="flex">
                                 <button>
@@ -59,10 +60,10 @@
                                 <input type="search" placeholder="Cerca o inizia una nuova chat">
                             </div>
                         </div>
-
+                        <!-- # users-list -->
                         <div class="users-list-wrapper">
                             <ul class="users-list">
-                                <li class="flex space-between" v-for="(contact, index) in contacts" :id="contact.index">
+                                <li class="flex space-between" v-for="(contact, index) in contacts" :id="contact.index" :class="(index === activeUser) ? 'active' : '' ">
                                     <div class="flex align-start">
                                         <img :src="`${contact.avatar}.jpg`" alt="User avatar">
                                         <div>
@@ -79,7 +80,7 @@
                     </section>
                     <!-- || chat -->
                     <section id="chat" class="flex">
-
+                        <!-- # header -->
                         <header class="flex align-center space-between">
                             <div class="flex align-center">
                                 <img :src="`${contacts[0].avatar}.jpg`" alt="User avatar">
@@ -94,30 +95,21 @@
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                             </div>
                         </header>
-
+                        <!-- # chat -->
                         <div class="chat">
-                            <ul>
-                                <li class="message flex sent">
-                                    <div class="message-balloon flex">
-                                        <p>Tutto fatto!</p>
-                                        <span>12.00</span>
-                                    </div>
-                                </li>
-                                <li class="message flex received">
-                                    <div class="message-balloon flex">
-                                        <p>Tutto fatto!</p>
-                                        <span>12.00</span>
-                                    </div>
-                                </li>
-                                <li class="message flex received">
-                                    <div class="message-balloon flex">
-                                        <p>Tutto fatto!</p>
-                                        <span>12.00</span>
-                                    </div>
-                                </li>
-                            </ul>
+                            <template v-for="(contact, index) in contacts" :key="contact.index">
+                                <ul v-if="index === activeUser">
+                                    <li class="message flex" v-for="(message, index) in contact.messages" :key="message.index" :class="(message.status === 'sent') ? 'sent' : 'received' ">
+                                        <div class="message-balloon flex">
+                                            <p> {{ message.message }} </p>
+                                            <span> {{ message.date }} </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </template>
+                            
                         </div>
-
+                        <!-- # footer -->
                         <footer class="flex align-center space-between">
                             <i class="fa-regular fa-face-smile"></i>
                             <input type="text" placeholder="Scrivi un messaggio">

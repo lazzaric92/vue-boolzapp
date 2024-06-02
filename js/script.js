@@ -171,8 +171,9 @@ createApp({
                 avatar: './img/avatar_io',
                 visible: true,
                 messages: []
-            }
-            
+            },
+            activeUser: 0,
+
         }
     }
 }).mount('#app');

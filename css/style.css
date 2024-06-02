@@ -217,7 +217,7 @@ header .last-seen{
     height: calc(100% - var(--header-height) * 2);
     overflow-y: auto;
     background-image: url(../img/mine.jpg);
-    padding: 2rem 4rem;
+    padding: 2rem 5rem;
 }
 
 .message {
@@ -233,7 +233,7 @@ header .last-seen{
 }
 
 .message-balloon{
-    width: 35%;
+    width: 40%;
     padding: .2rem .3rem;
     border-radius: 8px;
     margin-bottom: .5rem;
@@ -256,7 +256,7 @@ footer {
 
 footer i{
     color: var(--footer-icons-grey);
-    margin: 0 1rem;
+    margin: 0 1.5rem;
     font-size: 1.2rem;
 }
 
