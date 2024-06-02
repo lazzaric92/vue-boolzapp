@@ -83,9 +83,9 @@
                         <!-- # header -->
                         <header class="flex align-center space-between">
                             <div class="flex align-center">
-                                <img :src="`${contacts[0].avatar}.jpg`" alt="User avatar">
+                                <img :src="`${contacts[activeUser].avatar}.jpg`" alt="User avatar">
                                 <div>
-                                    <p class="user-name"> {{ contacts[0].name}} </p>
+                                    <p class="user-name"> {{ contacts[activeUser].name}} </p>
                                     <p class="last-seen">Ultimo accesso oggi alle 12.00</p>
                                 </div>
                             </div>
