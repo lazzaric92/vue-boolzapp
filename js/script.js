@@ -173,12 +173,53 @@ createApp({
                 messages: []
             },
             activeUser: 0,
+            newMessageContent: '',
 
         }
     },
     methods: {
         changeActiveUser: function(elIndex){
             this.activeUser = elIndex;
+        },
+
+        sendMessage: function(messageArray){
+            const newSentMessage = {
+                date: this.getMessageTime(),
+                message: this.newMessageContent,
+                status: 'sent'
+            }
+
+            messageArray.push(newSentMessage);
+            this.clearNewMessageContent();
+        },
+
+        clearNewMessageContent: function(){
+            this.newMessageContent = '';
+        },
+
+        getMessageTime : function(){
+            const newDate = Date();
+            const newDateElements = newDate.split(' ');
+            const [weekDay, month, day, year, time] = newDateElements;
+            const splitTime = time.split(':');
+            return `${splitTime[0]}:${splitTime[1]}`;
+        },
+
+        getReply: function(messageArray){
+            setTimeout(() => {
+                const newReceivedMessage = {
+                    date: this.getMessageTime(),
+                    message: 'Ok',
+                    status: 'received'
+                }
+                messageArray.push(newReceivedMessage);
+
+            }, 1000)
+        },
+
+        newConversation: function(messageArray){
+            this.sendMessage(messageArray);
+            this.getReply(messageArray);
         }
     }
 }).mount('#app');
