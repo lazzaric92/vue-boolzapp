@@ -185,7 +185,7 @@ createApp({
 
         sendMessage: function(messageArray){
             const newSentMessage = {
-                date: this.getMessageTime(),
+                date: this.messageTime(),   // es. '10/01/2020 15:30:55'
                 message: this.newMessageContent,
                 status: 'sent'
             }
@@ -202,8 +202,7 @@ createApp({
             const newDate = Date();
             const newDateElements = newDate.split(' ');
             const [weekDay, month, day, year, time] = newDateElements;
-            const splitTime = time.split(':');
-            return `${splitTime[0]}:${splitTime[1]}`;
+            return `${day}/${month}/${year} ${time}`;
         },
 
         getReply: function(messageArray){
@@ -236,7 +235,8 @@ createApp({
             const lastMessage = messageArray[messageArray.length - 1];
             const dateAndTime = lastMessage.date.split(' ');
             const [date, time] = dateAndTime;
-            return `Ultimo accesso il ${date} alle ${time}`;
+            const splitTime = time.split(':');
+            return `Ultimo accesso il ${date} alle ${splitTime[0]}:${splitTime[1]}`;
         },
 
         // --> function to show the last message of the contact in contacts-list
