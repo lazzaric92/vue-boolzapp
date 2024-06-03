@@ -23,4 +23,5 @@ Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati
 ! Milestone 5 - opzionale:
 Cancella messaggio: cliccando sul messaggio appare un menu a tendina che permette di cancellare il messaggio selezionato.
 Visualizzazione ora e ultimo messaggio inviato/ricevuto nella lista dei contatti.
+// Una volta creato il menù a tendina, cliccando su 'cancella messaggio' l'oggetto a quell'indice viene eliminato dall'array.
 

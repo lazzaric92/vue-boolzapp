@@ -175,6 +175,7 @@ createApp({
             activeContact: 0,
             newMessageContent: '',
             searchBarContent: '',
+            messageIndex: '',
 
         }
     },
@@ -185,7 +186,7 @@ createApp({
 
         sendMessage: function(messageArray){
             const newSentMessage = {
-                date: this.messageTime(),   // es. '10/01/2020 15:30:55'
+                date: this.messageTime(),   
                 message: this.newMessageContent,
                 status: 'sent'
             }
@@ -202,7 +203,7 @@ createApp({
             const newDate = Date();
             const newDateElements = newDate.split(' ');
             const [weekDay, month, day, year, time] = newDateElements;
-            return `${day}/${month}/${year} ${time}`;
+            return `${day}/${month}/${year} ${time}`;  // <-- es. '10/01/2020 15:30:55'
         },
 
         getReply: function(messageArray){
@@ -261,7 +262,16 @@ createApp({
                     contact.visible = false;
                 }
             });
-        }
+        },
+
+        changeMessageIndex: function(elIndex){
+            if(this.messageIndex !== elIndex){
+                this.messageIndex = elIndex;
+            } else {
+                this.messageIndex = '';
+            }
+            console.log(this.messageIndex);
+        },
     },
     updated() {
         this.visibleContacts();

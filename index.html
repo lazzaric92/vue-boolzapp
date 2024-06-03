@@ -55,8 +55,8 @@
                     <!-- # contacts-list -->
                     <div class="contacts-list-wrapper">
                         <ul class="contacts-list">
-                            <template v-for="(contact, index) in contacts" :id="contact.index">
-                                <li class="flex space-between" v-if="(contact.visible === true)" :class="(index === activeContact) ? 'active' : '' "  @click="changeActiveContact(index)">
+                            <template v-for="(contact, contactIndex) in contacts" :id="contact.contactIndex">
+                                <li class="flex space-between" v-if="(contact.visible === true)" :class="(contactIndex === activeContact) ? 'active' : '' "  @click="changeActiveContact(contactIndex)">
                                     <div class="flex align-start">
                                         <img :src="`${contact.avatar}.jpg`" alt="Contact avatar">
                                         <div>
@@ -73,7 +73,7 @@
                     </div>
                 </section>
                 <!-- || chat -->
-                <section id="chat" class="flex">
+                <section id="chat" class="flex-column">
                     <!-- # header -->
                     <header class="flex align-center space-between">
                         <div class="flex align-center">
@@ -91,13 +91,19 @@
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
                     </header>
-                    <!-- # chat -->
-                    <div class="chat">
+                    <!-- # chat-content -->
+                    <div class="chat-content">
                         <template v-for="(contact, index) in contacts" :key="contact.index">
-                            <ul v-if="index === activeContact" class="flex">
+                            <ul v-if="index === activeContact" class="flex-column">
                                 <li class="message flex" v-for="(message, index) in contact.messages" :key="message.index" :class="(message.status === 'sent') ? 'sent' : 'received' ">
                                     <p> {{ message.message }} </p>
-                                    <span> {{ getMessagesTime(message) }} </span>
+                                    <div class="flex-column space-between align-center">
+                                        <i class="fa-solid fa-angle-down dropdown-btn" @click="changeMessageIndex(index)"></i>
+                                        <div class="dropdown-content" v-if="(messageIndex === index)">
+                                            <p>Cancella messaggio</p>
+                                        </div>
+                                        <span> {{ getMessagesTime(message) }} </span>
+                                    </div>
                                 </li>
                             </ul>
                         </template>

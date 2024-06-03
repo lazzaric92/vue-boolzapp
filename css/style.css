@@ -27,6 +27,11 @@ body {
     display: flex;
 }
 
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
 .align-center {
     align-items: center;
 }
@@ -88,7 +93,8 @@ i,
 
 .notification p:last-child,
 header .last-seen,
-message-input input{
+.message-input input,
+.dropdown-btn{
     font-size: .7rem;
 }
 
@@ -97,7 +103,7 @@ main {
     height: 95%;
 }
 
-/* || #contacts */
+/* || CONTACTS */
 #contacts {
     width: 35%;
 }
@@ -196,10 +202,9 @@ header i {
     color: var(--header-icons-grey);
 }
 
-/* || #chat */
+/* || CHAT */
 #chat {
     width: 65%;
-    flex-direction: column;
 }
 
 #chat header {
@@ -210,15 +215,11 @@ header .last-seen{
     color: var(--message-input-icons-grey);
 }
 
-#chat .chat{
+.chat-content{
     height: calc(100% - var(--header-height) * 2);
     overflow-y: auto;
     background-image: url(../img/mine.jpg);
     padding: 2rem 5rem;
-}
-
-.chat ul {
-    flex-direction: column;
 }
 
 .message {
@@ -226,6 +227,7 @@ header .last-seen{
     padding: .2rem .3rem;
     border-radius: 8px;
     margin-bottom: .5rem;
+    position: relative;
 }
 
 .message.sent{
@@ -244,8 +246,23 @@ header .last-seen{
 }
 
 .message span {
-    align-self: flex-end;
     font-size: .5rem;
+}
+
+.dropdown-btn {
+    margin-top: .1rem;
+}
+
+.dropdown-content {
+    position: absolute;
+    z-index: 1;
+    width: 140px;
+    background-color: white;
+    box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    text-align: center;
+    top: 25px;
+    right: 0px;
 }
 
 .message-input {
