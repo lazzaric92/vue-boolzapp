@@ -17,116 +17,99 @@
 </head>
 <body>
     <div id="app">
-        <div class="bigger-container flex">
-            <!-- || ASIDE -->
-            <aside>
-                <section class="background-green"></section>
-                <section class="background-grey"></section>
-            </aside>
-            <!-- || MAIN -->
-            <main>
-                <section class="background-green"></section>
-                <section class="boolzapp flex">
-                    <!-- || users -->
-                    <section id="users">
-                        <!-- # header -->
-                        <header class="flex align-center space-between">
-                            <div class="flex align-center">
-                                <img :src="`${myProfile.avatar}.jpg`" alt="Mio avatar">
-                                <span class="user-name"> {{ myProfile.name}} </span>
-                            </div>
-                            <div class="flex align-center">
-                                <i class="fa-solid fa-circle-notch"></i>
-                                <i class="fa-solid fa-message"></i>
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </div>
-                        </header>
-                        <!-- # alert -->
-                        <div class="alert flex align-center">
-                            <div class="flex align-center">
-                                <i class="fa-solid fa-bell-slash"></i>
-                            </div>
-                            <div>
-                                <p>Ricevi notifiche di nuovi messaggi</p>
-                                <p>Attiva notifiche desktop</p>
-                            </div>
+        <div class="bigger-container flex justify-center align-center">
+            <main class="boolzapp flex">
+                <!-- || contacts -->
+                <section id="contacts">
+                    <!-- # header -->
+                    <header class="flex align-center space-between">
+                        <div class="flex align-center">
+                            <img :src="`${myProfile.avatar}.jpg`" alt="Mio avatar">
+                            <span class="contact-name"> {{ myProfile.name}} </span>
                         </div>
-                        <!-- # nav -->
-                        <div class="nav">
-                            <div class="flex">
-                                <button>
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </button>
-                                <input type="search" placeholder="Cerca o inizia una nuova chat">
-                            </div>
+                        <div class="flex align-center">
+                            <i class="fa-solid fa-circle-notch"></i>
+                            <i class="fa-solid fa-message"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
-                        <!-- # users-list -->
-                        <div class="users-list-wrapper">
-                            <ul class="users-list">
-                                <li class="flex space-between" v-for="(contact, index) in contacts" :id="contact.index" :class="(index === activeUser) ? 'active' : '' "  @click="changeActiveUser(index)">
-                                    <div class="flex align-start">
-                                        <img :src="`${contact.avatar}.jpg`" alt="User avatar">
-                                        <div>
-                                            <p class="user-name"> {{ contact.name}} </p>
-                                            <p class="last-message"> {{ getLastMessage(contact.messages) }} </p>
-                                        </div>
-                                    </div>
+                    </header>
+                    <!-- # notification -->
+                    <div class="notification flex align-center">
+                        <div class="flex align-center">
+                            <i class="fa-solid fa-bell-slash"></i>
+                        </div>
+                        <div>
+                            <p>Ricevi notifiche di nuovi messaggi</p>
+                            <p>Attiva notifiche desktop</p>
+                        </div>
+                    </div>
+                    <!-- # nav -->
+                    <div class="nav">
+                        <div class="flex">
+                            <button>
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                            <input type="search" placeholder="Cerca o inizia una nuova chat">
+                        </div>
+                    </div>
+                    <!-- # contacts-list -->
+                    <div class="contacts-list-wrapper">
+                        <ul class="contacts-list">
+                            <li class="flex space-between" v-for="(contact, index) in contacts" :id="contact.index" :class="(index === activeUser) ? 'active' : '' "  @click="changeActiveUser(index)">
+                                <div class="flex align-start">
+                                    <img :src="`${contact.avatar}.jpg`" alt="User avatar">
                                     <div>
-                                        <span class="last-seen">{{ getLastMessageDate(contact.messages) }}</span>
+                                        <p class="contact-name"> {{ contact.name}} </p>
+                                        <p class="last-message"> {{ getLastMessage(contact.messages) }} </p>
                                     </div>
+                                </div>
+                                <div>
+                                    <span class="last-seen">{{ getLastMessageDate(contact.messages) }}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <!-- || chat -->
+                <section id="chat" class="flex">
+                    <!-- # header -->
+                    <header class="flex align-center space-between">
+                        <div class="flex align-center">
+                            <img :src="`${contacts[activeUser].avatar}.jpg`" alt="Contact avatar">
+                            <div>
+                                <p class="contact-name"> {{ contacts[activeUser].name}} </p>
+                                <span class="last-seen">Ultimo accesso il </span>
+                                <span class="last-seen">
+                                    {{ getLastMessageDate(contacts[activeUser].messages) }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex align-center">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-solid fa-paperclip"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </header>
+                    <!-- # chat -->
+                    <div class="chat">
+                        <template v-for="(contact, index) in contacts" :key="contact.index">
+                            <ul v-if="index === activeUser" class="flex">
+                                <li class="message flex" v-for="(message, index) in contact.messages" :key="message.index" :class="(message.status === 'sent') ? 'sent' : 'received' ">
+                                    <p> {{ message.message }} </p>
+                                    <span> {{ getMessagesTime(message) }} </span>
                                 </li>
                             </ul>
+                        </template>
+                        
+                    </div>
+                    <!-- # message-input -->
+                        <div class="message-input flex align-center space-between" >
+                            <i class="fa-regular fa-face-smile"></i>
+                            <input type="text" placeholder="Scrivi un messaggio" v-model="newMessageContent" @keyup.enter="newConversation(contacts[activeUser].messages)">
+                            <i class="fa-solid fa-microphone"></i>
                         </div>
-                    </section>
-                    <!-- || chat -->
-                    <section id="chat" class="flex">
-                        <!-- # header -->
-                        <header class="flex align-center space-between">
-                            <div class="flex align-center">
-                                <img :src="`${contacts[activeUser].avatar}.jpg`" alt="User avatar">
-                                <div>
-                                    <p class="user-name"> {{ contacts[activeUser].name}} </p>
-                                    <span class="last-seen">Ultimo accesso il </span>
-                                    <span class="last-seen">
-                                        {{ getLastMessageDate(contacts[activeUser].messages) }}
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="flex align-center">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                                <i class="fa-solid fa-paperclip"></i>
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </div>
-                        </header>
-                        <!-- # chat -->
-                        <div class="chat">
-                            <template v-for="(contact, index) in contacts" :key="contact.index">
-                                <ul v-if="index === activeUser">
-                                    <li class="message flex" v-for="(message, index) in contact.messages" :key="message.index" :class="(message.status === 'sent') ? 'sent' : 'received' ">
-                                        <div class="message-balloon flex">
-                                            <p> {{ message.message }} </p>
-                                            <span> {{ getMessagesTime(message) }} </span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </template>
-                            
-                        </div>
-                        <!-- # footer -->
-                            <footer class="flex align-center space-between" >
-                                <i class="fa-regular fa-face-smile"></i>
-                                <input type="text" placeholder="Scrivi un messaggio" v-model="newMessageContent" @keyup.enter="newConversation(contacts[activeUser].messages)">
-                                <i class="fa-solid fa-microphone"></i>
-                            </footer>
-                    </section>
                 </section>
-                <section class="background-grey"></section>
             </main>
-            <!-- || ASIDE -->
-            <aside>
-                <section class="background-green"></section>
-                <section class="background-grey"></section>
-            </aside>
         </div>
     </div>
 

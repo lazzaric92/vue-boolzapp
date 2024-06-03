@@ -14,12 +14,11 @@ body {
     --background-grey: #dbdbd3;
     --header-grey: #eaeaea;
     --header-icons-grey: #b1b1b1;
-    --footer-grey: #f3eeea;
-    --footer-icons-grey: #6b7376;
-    --active-user-grey: #e9ebeb;
+    --message-input-grey: #f3eeea;
+    --message-input-icons-grey: #6b7376;
+    --active-contact-grey: #e9ebeb;
     --search-bar-grey: #fafafa;
     --lightblue: #8edafc;
-    --main-background-height: 25px;
     --header-height: 50px;
 }
 
@@ -40,15 +39,25 @@ body {
     justify-content: space-between;
 }
 
+.justify-center{
+    justify-content: center;
+}
+
 /* || GENERAL */
 .bigger-container{
     width: 100vw;
     height: 100vh;
+    background: linear-gradient(to bottom,
+        var(--background-green) 0%,
+        var(--background-green) 110px,
+        var(--background-grey) 110px,
+        var(--background-grey) 100%
+    );
 }
 
-#users header,
+#contacts header,
 #chat header,
-#chat footer {
+#chat .message-input {
     height: var(--header-height);
 }
 
@@ -56,8 +65,8 @@ header {
     background-color: var(--header-grey);
 }
 
-#users .alert,
-.users-list li{
+#contacts .notification,
+.contacts-list li{
     height: 55px;
 }
 
@@ -66,52 +75,30 @@ ul {
 }
 
 i,
-.users-list li,
-.alert p:last-child{
+.contacts-list li,
+.notification p:last-child{
     cursor: pointer;
 }
 
-.user-name,
+.contact-name,
 .message p,
-.alert p {
+.notification p {
     font-size: .8rem;
 }
 
-.alert p:last-child,
+.notification p:last-child,
 header .last-seen,
-footer input{
+message-input input{
     font-size: .7rem;
 }
 
-/* || ASIDE */
-aside {
-    width: 10%;
-}
-
-aside section.background-green{
-    height: 110px;
-}
-
-aside section.background-grey{
-    height: calc(100% - 110px);
-}
-
-/* || MAIN */
 main {
     width: 80%;
+    height: 95%;
 }
 
-main section.background-green,
-main section.background-grey {
-    height: var(--main-background-height);
-}
-
-.boolzapp {
-    height: calc(100% - (var(--main-background-height) *2));
-}
-
-/* || #users */
-#users {
+/* || #contacts */
+#contacts {
     width: 35%;
 }
 
@@ -130,11 +117,11 @@ header i {
     color: var(--header-icons-grey);
 }
 
-#users .alert {
+#contacts .notification {
     background-color: var(--lightblue);
 }
 
-.alert > div:first-child {
+.notification > div:first-child {
     background-color: white;
     border-radius: 50%;
     color: var(--lightblue);
@@ -144,12 +131,12 @@ header i {
     margin: 0 .5rem 0 .8rem;
 }
 
-.alert p:last-child{
+.notification p:last-child{
     text-decoration: underline;
-    color: var(--footer-icons-grey);
+    color: var(--message-input-icons-grey);
 }
 
-#users .nav{
+#contacts .nav{
     height: 40px;
     background-color: var(--search-bar-grey);
     padding: .3rem;
@@ -158,8 +145,8 @@ header i {
 .nav> div{
     background-color: white;
     border-radius: 4px;
-    color: var(--footer-icons-grey);
-    border: 1px solid var(--footer-grey);
+    color: var(--message-input-icons-grey);
+    border: 1px solid var(--message-input-grey);
 }
 
 .nav button {
@@ -176,25 +163,35 @@ header i {
     border-left: 1px solid var(--search-bar-grey);
 }
 
-.users-list li{
+.contacts-list-wrapper {
+    height: calc(100% - 145px);
     background-color: white;
-    border-top: 1px solid var(--active-user-grey);
+    overflow-y: auto;
+}
+
+.contacts-list li{
+    background-color: white;
+    border-top: 1px solid var(--active-contact-grey);
     padding: .3rem;
 }
 
-.users-list li img{
+.contacts-list li.active{
+    background-color: var(--active-contact-grey);
+}
+
+.contacts-list li img{
     width: 45px;
     border-radius: 50%;
     margin: 0 .5rem;
     align-self: center;
 }
 
-.users-list .user-name{
+.contacts-list .contact-name{
     margin: .1rem 0;
 }
 
-.users-list .last-message,
-.users-list .last-seen {
+.contacts-list .last-message,
+.contacts-list .last-seen {
     font-size: .6rem;
     color: var(--header-icons-grey);
 }
@@ -210,7 +207,7 @@ header i {
 }
 
 header .last-seen{
-    color: var(--footer-icons-grey);
+    color: var(--message-input-icons-grey);
 }
 
 #chat .chat{
@@ -220,23 +217,25 @@ header .last-seen{
     padding: 2rem 5rem;
 }
 
+.chat ul {
+    flex-direction: column;
+}
+
 .message {
-    width: 100%;
-}
-
-.message.sent{
-    justify-content: flex-end;
-}
-
-.message.received{
-    justify-content: flex-start;
-}
-
-.message-balloon{
     width: 40%;
     padding: .2rem .3rem;
     border-radius: 8px;
     margin-bottom: .5rem;
+}
+
+.message.sent{
+    align-self: flex-end;
+    background-color: var(--message-sent-green);
+}
+
+.message.received{
+    align-self: flex-start;
+    background-color: white;
 }
 
 .message p{
@@ -249,43 +248,21 @@ header .last-seen{
     font-size: .5rem;
 }
 
-footer {
-    background-color: var(--footer-grey);
+.message-input {
+    background-color: var(--message-input-grey);
     border-left: 1.5px solid #dedede;
 }
 
-footer i{
-    color: var(--footer-icons-grey);
+.message-input i{
+    color: var(--message-input-icons-grey);
     margin: 0 1.5rem;
     font-size: 1.2rem;
 }
 
-footer input{
+.message-input input{
     flex-grow: 1;
     border: none;
     padding: .7rem;
     border-radius: 4px;
 }
 
-
-
-/* ** STYLE */
-.background-green{
-    background-color: var(--background-green);
-}
-
-.background-grey{
-    background-color: var(--background-grey);
-}
-
-.message.sent .message-balloon {
-    background-color: var(--message-sent-green);
-}
-
-.message.received .message-balloon{
-    background-color: white;
-}
-
-.users-list li.active{
-    background-color: var(--active-user-grey);
-}
