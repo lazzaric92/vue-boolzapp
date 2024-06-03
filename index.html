@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <span class="last-seen">{{ getLastMessageDate(contact.messages) }}</span>
+                                        <span class="last-seen">{{ getLastMessageTime(contact.messages) }}</span>
                                     </div>
                                 </li>
                             </template>
@@ -80,9 +80,8 @@
                             <img :src="`${contacts[activeContact].avatar}.jpg`" alt="Contact avatar">
                             <div>
                                 <p class="contact-name"> {{ contacts[activeContact].name}} </p>
-                                <span class="last-seen">Ultimo accesso il </span>
                                 <span class="last-seen">
-                                    {{ getLastMessageDate(contacts[activeContact].messages) }}
+                                    {{ getLastAccessDate(contacts[activeContact].messages) }}
                                 </span>
                             </div>
                         </div>

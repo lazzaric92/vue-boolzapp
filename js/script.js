@@ -223,21 +223,32 @@ createApp({
             this.getReply(messageArray);
         },
 
+        // --> function to show the time in (all) the chat messages
         getMessagesTime: function(element){
             const dateAndTime = element.date.split(' ');
             const [date, time] = dateAndTime;
             const splitTime = time.split(':');
             return `${splitTime[0]}:${splitTime[1]}`; 
         },
+        
+        // --> function to show the last access (date and time) of the contact in the chat header
+        getLastAccessDate: function(messageArray){
+            const lastMessage = messageArray[messageArray.length - 1];
+            const dateAndTime = lastMessage.date.split(' ');
+            const [date, time] = dateAndTime;
+            return `Ultimo accesso il ${date} alle ${time}`;
+        },
 
+        // --> function to show the last message of the contact in contacts-list
         getLastMessage: function(messageArray){
             const lastMessage = messageArray[messageArray.length - 1];
             return lastMessage.message;
         },
 
-        getLastMessageDate: function(messageArray){
+        // --> function to show the last message time of the contact in contacts-list
+        getLastMessageTime: function(messageArray){
             const lastMessage = messageArray[messageArray.length - 1];
-            return lastMessage.date;
+            return this.getMessagesTime(lastMessage);
         },
 
         visibleContacts: function(){
