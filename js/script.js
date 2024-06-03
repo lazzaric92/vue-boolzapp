@@ -184,14 +184,14 @@ createApp({
             this.activeContact = elIndex;
         },
 
-        sendMessage: function(messageArray){
+        sendMessage: function(messagesArray){
             const newSentMessage = {
                 date: this.messageTime(),   
                 message: this.newMessageContent,
                 status: 'sent'
             }
 
-            messageArray.push(newSentMessage);
+            messagesArray.push(newSentMessage);
             this.clearNewMessageContent();
         },
 
@@ -206,21 +206,21 @@ createApp({
             return `${day}/${month}/${year} ${time}`;  // <-- es. '10/01/2020 15:30:55'
         },
 
-        getReply: function(messageArray){
+        getReply: function(messagesArray){
             setTimeout(() => {
                 const newReceivedMessage = {
                     date: this.messageTime(),
                     message: 'Ok',
                     status: 'received'
                 }
-                messageArray.push(newReceivedMessage);
+                messagesArray.push(newReceivedMessage);
 
             }, 1000)
         },
 
-        newConversation: function(messageArray){
-            this.sendMessage(messageArray);
-            this.getReply(messageArray);
+        newConversation: function(messagesArray){
+            this.sendMessage(messagesArray);
+            this.getReply(messagesArray);
         },
 
         // --> function to show the time in (all) the chat messages
@@ -232,8 +232,8 @@ createApp({
         },
         
         // --> function to show the last access (date and time) of the contact in the chat header
-        getLastAccessDate: function(messageArray){
-            const lastMessage = messageArray[messageArray.length - 1];
+        getLastAccessDate: function(messagesArray){
+            const lastMessage = messagesArray[messagesArray.length - 1];
             const dateAndTime = lastMessage.date.split(' ');
             const [date, time] = dateAndTime;
             const splitTime = time.split(':');
@@ -241,14 +241,14 @@ createApp({
         },
 
         // --> function to show the last message of the contact in contacts-list
-        getLastMessage: function(messageArray){
-            const lastMessage = messageArray[messageArray.length - 1];
+        getLastMessage: function(messagesArray){
+            const lastMessage = messagesArray[messagesArray.length - 1];
             return lastMessage.message;
         },
 
         // --> function to show the last message time of the contact in contacts-list
-        getLastMessageTime: function(messageArray){
-            const lastMessage = messageArray[messageArray.length - 1];
+        getLastMessageTime: function(messagesArray){
+            const lastMessage = messagesArray[messagesArray.length - 1];
             return this.getMessagesTime(lastMessage);
         },
 
@@ -270,8 +270,12 @@ createApp({
             } else {
                 this.messageIndex = '';
             }
-            console.log(this.messageIndex);
         },
+
+        removeObj: function(messagesArray, index){
+            messagesArray.splice(index, 1);
+            this.changeMessageIndex();
+        }
     },
     updated() {
         this.visibleContacts();

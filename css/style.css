@@ -81,7 +81,8 @@ ul {
 
 i,
 .contacts-list li,
-.notification p:last-child{
+.notification p:last-child,
+.dropdown-content p {
     cursor: pointer;
 }
 
@@ -120,7 +121,6 @@ header > div:last-child{
 
 header i {
     margin: 0 .5rem;
-    color: var(--header-icons-grey);
 }
 
 #contacts .notification {
@@ -139,7 +139,6 @@ header i {
 
 .notification p:last-child{
     text-decoration: underline;
-    color: var(--message-input-icons-grey);
 }
 
 #contacts .nav{
@@ -151,7 +150,6 @@ header i {
 .nav> div{
     background-color: white;
     border-radius: 4px;
-    color: var(--message-input-icons-grey);
     border: 1px solid var(--message-input-grey);
 }
 
@@ -159,7 +157,6 @@ header i {
     background-color: transparent;
     border: none;
     padding: .4rem 1.5rem;
-    color: var(--header-icons-grey);
 }
 
 .nav input {
@@ -199,7 +196,6 @@ header i {
 .contacts-list .last-message,
 .contacts-list .last-seen {
     font-size: .6rem;
-    color: var(--header-icons-grey);
 }
 
 /* || CHAT */
@@ -209,10 +205,6 @@ header i {
 
 #chat header {
     border-left: 1.5px solid #dedede;
-}
-
-header .last-seen{
-    color: var(--message-input-icons-grey);
 }
 
 .chat-content{
@@ -251,6 +243,7 @@ header .last-seen{
 
 .dropdown-btn {
     margin-top: .1rem;
+    color: transparent;
 }
 
 .dropdown-content {
@@ -265,13 +258,16 @@ header .last-seen{
     right: 0px;
 }
 
+.dropdown-content p:hover{
+    color: black;
+}
+
 .message-input {
     background-color: var(--message-input-grey);
     border-left: 1.5px solid #dedede;
 }
 
 .message-input i{
-    color: var(--message-input-icons-grey);
     margin: 0 1.5rem;
     font-size: 1.2rem;
 }
@@ -283,3 +279,20 @@ header .last-seen{
     border-radius: 4px;
 }
 
+/* ** STYLE */
+header i,
+.nav button,
+.contacts-list .last-message,
+.contacts-list .last-seen,
+.message span,
+.message:hover .dropdown-btn,
+.dropdown-content {
+    color: var(--header-icons-grey);
+}
+
+.notification p:last-child,
+.nav> div,
+header .last-seen,
+.message-input i{
+    color: var(--message-input-icons-grey);
+}

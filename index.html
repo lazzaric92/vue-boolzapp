@@ -100,7 +100,7 @@
                                     <div class="flex-column space-between align-center">
                                         <i class="fa-solid fa-angle-down dropdown-btn" @click="changeMessageIndex(index)"></i>
                                         <div class="dropdown-content" v-if="(messageIndex === index)">
-                                            <p>Cancella messaggio</p>
+                                            <p @click="removeObj(contact.messages, index)">Cancella messaggio</p>
                                         </div>
                                         <span> {{ getMessagesTime(message) }} </span>
                                     </div>
