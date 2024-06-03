@@ -172,14 +172,15 @@ createApp({
                 visible: true,
                 messages: []
             },
-            activeUser: 0,
+            activeContact: 0,
             newMessageContent: '',
+            searchBarContent: '',
 
         }
     },
     methods: {
-        changeActiveUser: function(elIndex){
-            this.activeUser = elIndex;
+        changeActiveContact: function(elIndex){
+            this.activeContact = elIndex;
         },
 
         sendMessage: function(messageArray){
@@ -237,13 +238,25 @@ createApp({
         getLastMessageDate: function(messageArray){
             const lastMessage = messageArray[messageArray.length - 1];
             return lastMessage.date;
+        },
+
+        visibleContacts: function(){
+            this.contacts.forEach(contact => {
+                const searchBarContent = this.searchBarContent.toLowerCase().trim();
+                const name = contact.name.toLowerCase().trim();
+                if(this.searchBarContent === '' || name.includes(searchBarContent)){
+                    contact.visible = true;
+                } else {
+                    contact.visible = false;
+                }
+            });
         }
+    },
+    updated() {
+        this.visibleContacts();
     }
 }).mount('#app');
 
 
 
 // || MEMO
-/* 
-
-*/

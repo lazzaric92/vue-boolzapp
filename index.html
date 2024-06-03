@@ -49,24 +49,26 @@
                             <button>
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
-                            <input type="search" placeholder="Cerca o inizia una nuova chat">
+                            <input type="search" placeholder="Cerca o inizia una nuova chat" v-model="searchBarContent">
                         </div>
                     </div>
                     <!-- # contacts-list -->
                     <div class="contacts-list-wrapper">
                         <ul class="contacts-list">
-                            <li class="flex space-between" v-for="(contact, index) in contacts" :id="contact.index" :class="(index === activeUser) ? 'active' : '' "  @click="changeActiveUser(index)">
-                                <div class="flex align-start">
-                                    <img :src="`${contact.avatar}.jpg`" alt="User avatar">
-                                    <div>
-                                        <p class="contact-name"> {{ contact.name}} </p>
-                                        <p class="last-message"> {{ getLastMessage(contact.messages) }} </p>
+                            <template v-for="(contact, index) in contacts" :id="contact.index">
+                                <li class="flex space-between" v-if="(contact.visible === true)" :class="(index === activeContact) ? 'active' : '' "  @click="changeActiveContact(index)">
+                                    <div class="flex align-start">
+                                        <img :src="`${contact.avatar}.jpg`" alt="Contact avatar">
+                                        <div>
+                                            <p class="contact-name"> {{ contact.name}} </p>
+                                            <p class="last-message"> {{ getLastMessage(contact.messages) }} </p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <span class="last-seen">{{ getLastMessageDate(contact.messages) }}</span>
-                                </div>
-                            </li>
+                                    <div>
+                                        <span class="last-seen">{{ getLastMessageDate(contact.messages) }}</span>
+                                    </div>
+                                </li>
+                            </template>
                         </ul>
                     </div>
                 </section>
@@ -75,12 +77,12 @@
                     <!-- # header -->
                     <header class="flex align-center space-between">
                         <div class="flex align-center">
-                            <img :src="`${contacts[activeUser].avatar}.jpg`" alt="Contact avatar">
+                            <img :src="`${contacts[activeContact].avatar}.jpg`" alt="Contact avatar">
                             <div>
-                                <p class="contact-name"> {{ contacts[activeUser].name}} </p>
+                                <p class="contact-name"> {{ contacts[activeContact].name}} </p>
                                 <span class="last-seen">Ultimo accesso il </span>
                                 <span class="last-seen">
-                                    {{ getLastMessageDate(contacts[activeUser].messages) }}
+                                    {{ getLastMessageDate(contacts[activeContact].messages) }}
                                 </span>
                             </div>
                         </div>
@@ -93,7 +95,7 @@
                     <!-- # chat -->
                     <div class="chat">
                         <template v-for="(contact, index) in contacts" :key="contact.index">
-                            <ul v-if="index === activeUser" class="flex">
+                            <ul v-if="index === activeContact" class="flex">
                                 <li class="message flex" v-for="(message, index) in contact.messages" :key="message.index" :class="(message.status === 'sent') ? 'sent' : 'received' ">
                                     <p> {{ message.message }} </p>
                                     <span> {{ getMessagesTime(message) }} </span>
@@ -105,7 +107,7 @@
                     <!-- # message-input -->
                         <div class="message-input flex align-center space-between" >
                             <i class="fa-regular fa-face-smile"></i>
-                            <input type="text" placeholder="Scrivi un messaggio" v-model="newMessageContent" @keyup.enter="newConversation(contacts[activeUser].messages)">
+                            <input type="text" placeholder="Scrivi un messaggio" v-model="newMessageContent" @keyup.enter="newConversation(contacts[activeContact].messages)">
                             <i class="fa-solid fa-microphone"></i>
                         </div>
                 </section>

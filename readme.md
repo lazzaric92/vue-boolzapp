@@ -17,6 +17,8 @@ Risposta dall’interlocutore: ad ogni inserimento di un messaggio, l’utente r
 
 ! Milestone 4:
 Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina).
+// Lego al v-model della searchbar una variabile: se questa è vuota (default) o se il nome del contatto contiene la stringa nella variabile, allora la proprietà 'visible' è uguale a 'true';
+    aggiungo un v-if ai contatti per renderli visibili solo se 'visible' = 'true'.
 
 ! Milestone 5 - opzionale:
 Cancella messaggio: cliccando sul messaggio appare un menu a tendina che permette di cancellare il messaggio selezionato.
