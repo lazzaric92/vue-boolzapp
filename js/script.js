@@ -172,16 +172,16 @@ createApp({
                 visible: true,
                 messages: []
             },
+            defaultScreen: true,
             activeContact: 0,
             newMessageContent: '',
             searchBarContent: '',
             messageIndex: '',
             contactsListLength: '',
             repliesArray: [
-                'Come diceva Emile Michel Cioran, “Se obbedissi al primo impulso, passerei le giornate a scrivere lettere di ingiurie e di addio.” 😂',
-                'Secondo me hai sbagliato chat?',
+                'Secondo me hai sbagliato chat',
                 'Non lo so Rick 🤔',
-                '❤️', '😱', '😎', '😭', '😒', '🙈', '👏', '🎉🎉🎉🎉', '🍻', '💔',
+                '❤️', '😱', '😎', '😭', '😒', '🙈', '👏', '🎉🎉🎉🎉', '🍻', '💔', '😂',
                 '(￣y▽￣)╭ Ohohoho.....',
                 'Ok',
                 'Per me va bene 👍',
@@ -197,6 +197,7 @@ createApp({
     methods: {
         changeActiveContact: function(elIndex){
             this.activeContact = elIndex;
+            this.defaultScreen = false;
         },
 
         sendMessage: function(messagesArray){

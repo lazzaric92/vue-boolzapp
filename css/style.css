@@ -217,6 +217,16 @@ header i {
     width: 65%;
 }
 
+#chat > div{
+    height: 100%;
+}
+
+.default-screen {
+    background-color: white;
+    border-left: 1px solid #dedede;
+    justify-content: space-around;
+}
+
 #chat header {
     border-left: 1.5px solid #dedede;
 }

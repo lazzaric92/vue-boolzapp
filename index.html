@@ -56,7 +56,7 @@
                     <div class="contacts-list-wrapper">
                         <ul class="contacts-list">
                             <template v-for="(contact, contactIndex) in contacts" :id="contact.contactIndex">
-                                <li class="flex space-between" v-if="(contact.visible === true)" :class="(contactIndex === activeContact) ? 'active' : '' "  @click="changeActiveContact(contactIndex)">
+                                <li class="flex space-between" v-if="(contact.visible === true)" :class="(contactIndex === activeContact && defaultScreen === false) ? 'active' : '' "  @click="changeActiveContact(contactIndex)">
                                     <div class="flex align-start">
                                         <img :src="`${contact.avatar}.jpg`" alt="Contact avatar">
                                         <div>
@@ -74,50 +74,56 @@
                     </div>
                 </section>
                 <!-- || chat -->
-                <section id="chat" class="flex-column">
-                    <!-- # header -->
-                    <header class="flex align-center space-between">
-                        <div class="flex align-center">
-                            <img :src="`${contacts[activeContact].avatar}.jpg`" alt="Contact avatar">
-                            <div>
-                                <p class="contact-name"> {{ contacts[activeContact].name}} </p>
-                                <span class="last-seen">Ultimo accesso </span>
-                                <span class="last-seen">
-                                    {{ getLastAccessDate(contacts[activeContact].messages) }}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="flex align-center">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <i class="fa-solid fa-paperclip"></i>
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
-                        </div>
-                    </header>
-                    <!-- # chat-content -->
-                    <div class="chat-content">
-                        <template v-for="(contact, index) in contacts" :key="contact.index">
-                            <ul v-if="index === activeContact" class="flex-column">
-                                <li class="message flex" v-for="(message, index) in contact.messages" :key="message.index" :class="(message.status === 'sent') ? 'sent' : 'received' ">
-                                    <p> {{ message.message }} </p>
-                                    <div class="flex-column space-between align-center">
-                                        <i class="fa-solid fa-angle-down dropdown-btn" @click="changeMessageIndex(index)"></i>
-                                        <div class="dropdown-content" v-if="(messageIndex === index)">
-                                            <p @click="deleteMessage(contact.messages, index)">Cancella messaggio</p>
-                                        </div>
-                                        <span> {{ getMessagesTime(message) }} </span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </template>
-                        
+                <section id="chat">
+                    <div v-if="defaultScreen === true " class="default-screen flex align-center">
+                        <p>Clicca su un contatto per avviare una nuova conversazione</p>
                     </div>
-                    <!-- # message-input -->
+                    <div v-if="defaultScreen === false" class="flex-column">
+                        <!-- # header -->
+                        <header class="flex align-center space-between">
+                            <div class="flex align-center">
+                                <img :src="`${contacts[activeContact].avatar}.jpg`" alt="Contact avatar">
+                                <div>
+                                    <p class="contact-name"> {{ contacts[activeContact].name}} </p>
+                                    <span class="last-seen">Ultimo accesso </span>
+                                    <span class="last-seen">
+                                        {{ getLastAccessDate(contacts[activeContact].messages) }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex align-center">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <i class="fa-solid fa-paperclip"></i>
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </div>
+                        </header>
+                        <!-- # chat-content -->
+                        <div class="chat-content">
+                            <template v-for="(contact, index) in contacts" :key="contact.index">
+                                <ul v-if="index === activeContact" class="flex-column">
+                                    <li class="message flex" v-for="(message, index) in contact.messages" :key="message.index" :class="(message.status === 'sent') ? 'sent' : 'received' ">
+                                        <p> {{ message.message }} </p>
+                                        <div class="flex-column space-between align-center">
+                                            <i class="fa-solid fa-angle-down dropdown-btn" @click="changeMessageIndex(index)"></i>
+                                            <div class="dropdown-content" v-if="(messageIndex === index)">
+                                                <p @click="deleteMessage(contact.messages, index)">Cancella messaggio</p>
+                                            </div>
+                                            <span> {{ getMessagesTime(message) }} </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </template>
+                            
+                        </div>
+                        <!-- # message-input -->
                         <div class="message-input flex align-center space-between" >
                             <i class="fa-regular fa-face-smile"></i>
                             <input type="text" placeholder="Scrivi un messaggio" v-model="newMessageContent" @keyup.enter="newConversation(contacts[activeContact].messages)">
                             <i class="fa-solid fa-paper-plane" v-if="newMessageContent !== '' "  @click="newConversation(contacts[activeContact].messages)"></i>
                             <i class="fa-solid fa-microphone" v-else></i>
                         </div>
+                    </div>
+                    
                 </section>
             </main>
         </div>
