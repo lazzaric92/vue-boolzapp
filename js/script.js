@@ -172,7 +172,7 @@ createApp({
                 visible: true,
                 messages: []
             },
-            defaultScreen: true,
+            homeScreen: true,
             activeContact: 0,
             newMessageContent: '',
             searchBarContent: '',
@@ -197,7 +197,7 @@ createApp({
     methods: {
         changeActiveContact: function(elIndex){
             this.activeContact = elIndex;
-            this.defaultScreen = false;
+            this.homeScreen = false;
         },
 
         sendMessage: function(messagesArray){
@@ -316,6 +316,12 @@ createApp({
         deleteMessage: function(messagesArray, index){
             messagesArray.splice(index, 1);
             this.changeMessageIndex();
+        },
+
+        backToHomeScreen: function(){
+            if(this.homeScreen !== true){
+                this.homeScreen = true;
+            }
         }
     },
     updated() {

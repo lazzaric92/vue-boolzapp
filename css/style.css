@@ -19,6 +19,7 @@ body {
     --active-contact-grey: #e9ebeb;
     --search-bar-grey: #fafafa;
     --lightblue: #8edafc;
+    --home-screen: #00655b;
     --header-height: 50px;
 }
 
@@ -89,7 +90,8 @@ i,
 .notification p:last-child,
 .dropdown-content p,
 .contact-name,
-img {
+header img,
+li img {
     cursor: pointer;
 }
 
@@ -221,10 +223,26 @@ header i {
     height: 100%;
 }
 
-.default-screen {
-    background-color: white;
+.home-screen {
+    background-color: var(--home-screen);
     border-left: 1px solid #dedede;
-    justify-content: space-around;
+}
+
+.home-screen > div{
+    height: calc(100% - var(--header-height));
+}
+
+.home-screen img{
+    width: 350px;
+    border-radius: 50%
+}
+
+.home-screen p{
+    color: var(--active-contact-grey);
+    margin-bottom: 5rem;
+    width: 300px;
+    text-align: center;
+    font-size: 1.2rem;
 }
 
 #chat header {
