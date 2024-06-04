@@ -176,7 +176,7 @@ createApp({
             newMessageContent: '',
             searchBarContent: '',
             messageIndex: '',
-
+            contactsListLength: '',
         }
     },
     methods: {
@@ -278,6 +278,11 @@ createApp({
             });
         },
 
+        getContactsListLength: function(){
+            const ulElement = document.querySelector('.contacts-list');
+            this.contactsListLength = ulElement.children.length;
+        },
+
         changeMessageIndex: function(elIndex){
             if(this.messageIndex !== elIndex){
                 this.messageIndex = elIndex;
@@ -293,6 +298,7 @@ createApp({
     },
     updated() {
         this.visibleContacts();
+        this.getContactsListLength()
     }
 }).mount('#app');
 
