@@ -185,14 +185,17 @@ createApp({
         },
 
         sendMessage: function(messagesArray){
-            const newSentMessage = {
-                date: this.messageTime(),   
-                message: this.newMessageContent,
-                status: 'sent'
+            if(this.newMessageContent.trim() !== ''){
+                const newSentMessage = {
+                    date: this.messageTime(),   
+                    message: this.newMessageContent.trim(),
+                    status: 'sent'
+                }
+    
+                messagesArray.push(newSentMessage);
+                this.clearNewMessageContent();
             }
-
-            messagesArray.push(newSentMessage);
-            this.clearNewMessageContent();
+            
         },
 
         clearNewMessageContent: function(){
@@ -219,8 +222,10 @@ createApp({
         },
 
         newConversation: function(messagesArray){
-            this.sendMessage(messagesArray);
-            this.getReply(messagesArray);
+            if(this.newMessageContent.trim() !== ''){
+                this.sendMessage(messagesArray);
+                this.getReply(messagesArray);
+            }
         },
 
         // --> function to show the time in (all) the chat messages
