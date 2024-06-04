@@ -80,6 +80,7 @@
                             <img :src="`${contacts[activeContact].avatar}.jpg`" alt="Contact avatar">
                             <div>
                                 <p class="contact-name"> {{ contacts[activeContact].name}} </p>
+                                <span class="last-seen">Ultimo accesso </span>
                                 <span class="last-seen">
                                     {{ getLastAccessDate(contacts[activeContact].messages) }}
                                 </span>
@@ -100,7 +101,7 @@
                                     <div class="flex-column space-between align-center">
                                         <i class="fa-solid fa-angle-down dropdown-btn" @click="changeMessageIndex(index)"></i>
                                         <div class="dropdown-content" v-if="(messageIndex === index)">
-                                            <p @click="removeObj(contact.messages, index)">Cancella messaggio</p>
+                                            <p @click="deleteMessage(contact.messages, index)">Cancella messaggio</p>
                                         </div>
                                         <span> {{ getMessagesTime(message) }} </span>
                                     </div>

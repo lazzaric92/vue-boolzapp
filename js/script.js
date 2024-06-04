@@ -233,23 +233,37 @@ createApp({
         
         // --> function to show the last access (date and time) of the contact in the chat header
         getLastAccessDate: function(messagesArray){
-            const lastMessage = messagesArray[messagesArray.length - 1];
-            const dateAndTime = lastMessage.date.split(' ');
-            const [date, time] = dateAndTime;
-            const splitTime = time.split(':');
-            return `Ultimo accesso il ${date} alle ${splitTime[0]}:${splitTime[1]}`;
+            if(messagesArray.length > 0){
+                const lastMessage = messagesArray[messagesArray.length - 1];
+                const dateAndTime = lastMessage.date.split(' ');
+                const [date, time] = dateAndTime;
+                const splitTime = time.split(':');
+                return `il ${date} alle ${splitTime[0]}:${splitTime[1]}`;
+            } else {
+                return '';
+            }
+            
         },
 
         // --> function to show the last message of the contact in contacts-list
         getLastMessage: function(messagesArray){
-            const lastMessage = messagesArray[messagesArray.length - 1];
-            return lastMessage.message;
+            if(messagesArray.length > 0){
+                const lastMessage = messagesArray[messagesArray.length - 1];
+                return lastMessage.message;
+            } else {
+                return '';
+            }
         },
 
         // --> function to show the last message time of the contact in contacts-list
         getLastMessageTime: function(messagesArray){
-            const lastMessage = messagesArray[messagesArray.length - 1];
-            return this.getMessagesTime(lastMessage);
+            if(messagesArray.length > 0){
+                const lastMessage = messagesArray[messagesArray.length - 1];
+                return this.getMessagesTime(lastMessage);
+            } else {
+                return '';
+            }
+            
         },
 
         visibleContacts: function(){
@@ -272,7 +286,7 @@ createApp({
             }
         },
 
-        removeObj: function(messagesArray, index){
+        deleteMessage: function(messagesArray, index){
             messagesArray.splice(index, 1);
             this.changeMessageIndex();
         }
