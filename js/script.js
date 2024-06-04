@@ -177,6 +177,21 @@ createApp({
             searchBarContent: '',
             messageIndex: '',
             contactsListLength: '',
+            repliesArray: [
+                'Come diceva Emile Michel Cioran, “Se obbedissi al primo impulso, passerei le giornate a scrivere lettere di ingiurie e di addio.” 😂',
+                'Secondo me hai sbagliato chat?',
+                'Non lo so Rick 🤔',
+                '❤️', '😱', '😎', '😭', '😒', '🙈', '👏', '🎉🎉🎉🎉', '🍻', '💔',
+                '(￣y▽￣)╭ Ohohoho.....',
+                'Ok',
+                'Per me va bene 👍',
+                'Gli altri che ne pensano?',
+                'Hai bevuto?',
+                'GG!',
+                'Wow',
+                '"Parole dure, parole dure di un uomo davvero strano"',
+                'Bene ma non benissimo'
+            ],
         }
     },
     methods: {
@@ -211,9 +226,10 @@ createApp({
 
         getReply: function(messagesArray){
             setTimeout(() => {
+                const randomNumber = Math.floor(Math.random() * this.repliesArray.length);
                 const newReceivedMessage = {
                     date: this.messageTime(),
-                    message: 'Ok',
+                    message: this.repliesArray[randomNumber],
                     status: 'received'
                 }
                 messagesArray.push(newReceivedMessage);
