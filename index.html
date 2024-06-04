@@ -17,7 +17,7 @@
 </head>
 <body>
     <div id="app">
-        <div class="bigger-container flex justify-center align-center">
+        <div class="bigger-container flex justify-center align-center" :class="(lightMode === true) ? '' : 'dark' ">
             <main class="boolzapp flex">
                 <!-- || contacts -->
                 <section id="contacts">
@@ -77,10 +77,14 @@
                 <!-- || chat -->
                 <section id="chat">
                     <div v-if="homeScreen === true " class="home-screen">
-                        <header></header>
+                        <header class="flex align-center">
+                            <i v-if="lightMode === true" class="fa-solid fa-moon" @click="switchLightAndDark()"></i>
+                            <i v-else class="fa-solid fa-sun" @click="switchLightAndDark()"></i>
+                        </header>
                         <div class="flex-column justify-center align-center">
                             <p>Clicca su un contatto per avviare una nuova conversazione</p>
-                            <img src="./img/home-light.jpg" alt="">
+                            <img v-if="lightMode === true" src="./img/home-light.jpg" alt="Home screen image">
+                            <img v-else src="./img/home-dark.jpg" alt="Home screen image">
                         </div>
                         
                     </div>

@@ -192,6 +192,7 @@ createApp({
                 '"Parole dure, parole dure di un uomo davvero strano"',
                 'Bene ma non benissimo'
             ],
+            lightMode: true,
         }
     },
     methods: {
@@ -321,6 +322,14 @@ createApp({
         backToHomeScreen: function(){
             if(this.homeScreen !== true){
                 this.homeScreen = true;
+            }
+        },
+
+        switchLightAndDark: function() {
+            if (this.lightMode === true){
+                this.lightMode = false;
+            } else {
+                this.lightMode = true;
             }
         }
     },
