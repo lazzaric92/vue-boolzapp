@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boolzapp</title>
-    <!-- Font -->
+    <!-- Default Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- Open Dyslexic -->
+    <link href="https://fonts.cdnfonts.com/css/open-dyslexic" rel="stylesheet">
     <!-- Font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- CSS -->
@@ -17,7 +19,7 @@
 </head>
 <body>
     <div id="app">
-        <div class="bigger-container flex justify-center align-center" :class="(lightMode === true) ? '' : 'dark' ">
+        <div class="bigger-container flex justify-center align-center" :class="[(lightMode ? '' : 'dark'), (dyslexicFont  ?  'dyslexic-font' : 'default-font')]" >
             <main class="boolzapp flex">
                 <!-- || contacts -->
                 <section id="contacts">
@@ -50,7 +52,7 @@
                             <button>
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
-                            <input type="search" placeholder="Cerca o inizia una nuova chat" v-model="searchBarContent">
+                            <input type="search" placeholder="Cerca o inizia una nuova chat" v-model="searchBarContent" :class="(dyslexicFont  ?  'dyslexic-font' : 'default-font')">
                         </div>
                     </div>
                     <!-- # contacts-list -->
@@ -76,18 +78,22 @@
                 </section>
                 <!-- || chat -->
                 <section id="chat">
+                    <!-- #home-screen -->
                     <div v-if="homeScreen === true " class="home-screen">
                         <header class="flex align-center">
-                            <i v-if="lightMode === true" class="fa-solid fa-moon" @click="switchLightAndDark()"></i>
-                            <i v-else class="fa-solid fa-sun" @click="switchLightAndDark()"></i>
+                            <span class="font-button" :class="dyslexicFont ? 'default-font' : 'dyslexic-font'"  @click="switchFont()">F</span>
+                            <div class="light-and-dark">
+                                <i v-if="lightMode === true" class="fa-solid fa-moon" @click="switchLightAndDark()"></i>
+                                <i v-else class="fa-solid fa-sun" @click="switchLightAndDark()"></i>
+                            </div>
                         </header>
                         <div class="flex-column justify-center align-center">
                             <p>Clicca su un contatto per avviare una nuova conversazione</p>
                             <img v-if="lightMode === true" src="./img/home-light.jpg" alt="Home screen image">
                             <img v-else src="./img/home-dark.jpg" alt="Home screen image">
                         </div>
-                        
                     </div>
+
                     <div v-if="homeScreen === false" class="flex-column">
                         <!-- # header -->
                         <header class="flex align-center space-between">
@@ -128,7 +134,7 @@
                         <!-- # message-input -->
                         <div class="message-input flex align-center space-between" >
                             <i class="fa-regular fa-face-smile"></i>
-                            <input type="text" placeholder="Scrivi un messaggio" v-model="newMessageContent" @keyup.enter="newConversation(contacts[activeContact].messages)">
+                            <input type="text" placeholder="Scrivi un messaggio" v-model="newMessageContent" @keyup.enter="newConversation(contacts[activeContact].messages)"  :class="(dyslexicFont  ?  'dyslexic-font' : 'default-font')">
                             <i class="fa-solid fa-paper-plane" v-if="newMessageContent !== '' "  @click="newConversation(contacts[activeContact].messages)"></i>
                             <i class="fa-solid fa-microphone" v-else></i>
                         </div>

@@ -193,6 +193,7 @@ createApp({
                 'Bene ma non benissimo'
             ],
             lightMode: true,
+            dyslexicFont: false,
         }
     },
     methods: {
@@ -331,7 +332,16 @@ createApp({
             } else {
                 this.lightMode = true;
             }
-        }
+        },
+
+        switchFont: function() {
+            if (this.dyslexicFont === true){
+                this.dyslexicFont = false;
+            } else {
+                this.dyslexicFont = true;
+            }
+            console.log(this.dyslexicFont)
+        },
     },
     updated() {
         this.visibleContacts();
