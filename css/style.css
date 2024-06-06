@@ -19,6 +19,7 @@
     --search-bar: #1b1a55;
     --notification: #bb86cc;
     --home-screen: #230b57;
+    --add-contact-btn: #784cac;
     --message-sent-green: #aece97;
     --chat-bg-image: url(../img/mine-dark.jpg)
 }
@@ -36,6 +37,7 @@
     --search-bar: #fafafa;
     --notification: #8edafc;
     --home-screen: #00655b;
+    --add-contact-btn: #009688;
     --font: #000000;
     --border: #dedede;
     --header-height: 50px;
@@ -119,7 +121,8 @@ i,
 .contact-name,
 header img,
 li img,
-.home-screen .font-button {
+.home-screen .font-button,
+button {
     cursor: pointer;
 }
 
@@ -262,7 +265,7 @@ header i {
 .add-contact button {
     width: 35px;
     height: 35px;
-    background-color: var(--background-top);
+    background-color: var(--add-contact-btn);
     color: white;
     border: none;
     border-radius: 8px;
