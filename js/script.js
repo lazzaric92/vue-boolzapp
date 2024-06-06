@@ -181,7 +181,7 @@ createApp({
             repliesArray: [
                 'Secondo me hai sbagliato chat',
                 'Non lo so Rick 🤔',
-                '❤️', '😱', '😎', '😭', '😒', '🙈', '👏', '🎉🎉🎉🎉', '🍻', '💔', '😂',
+                '❤️', '😱', '😎', '😭', '😒', '👏', '🎉🎉🎉🎉', '🍻', '💔', '😂',
                 '(￣y▽￣)╭ Ohohoho.....',
                 'Ok',
                 'Per me va bene 👍',
@@ -194,6 +194,8 @@ createApp({
             ],
             lightMode: true,
             dyslexicFont: false,
+            addContactInput: false,
+            newContactName: '',
         }
     },
     methods: {
@@ -341,6 +343,30 @@ createApp({
                 this.dyslexicFont = true;
             }
         },
+
+        toggleAddContactInput: function() {
+            if (this.addContactInput === true){
+                this.addContactInput = false;
+            } else {
+                this.addContactInput = true;
+            }
+        },
+
+        addNewContact: function(){
+            const imagesArray = ['./img/avatar_10', './img/avatar_11', './img/avatar_12', './img/avatar_13'];
+            const randomNumber = Math.floor(Math.random() * imagesArray.length);
+
+            const newContact = {
+                name: this.newContactName,
+                avatar: imagesArray[randomNumber],
+                visible: true,
+                messages: []
+            }
+
+            this.contacts.push(newContact);
+            this.newContactName = '';
+            this.addContactInput = false;
+        }
     },
     updated() {
         this.visibleContacts();

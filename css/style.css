@@ -253,7 +253,11 @@ header i {
     height: var(--header-height);
     border-top: 1px solid var(--border);
     background-color: var(--search-bar);
-    padding: 0 1.5rem;
+    padding: 0 1.2rem;
+}
+
+.add-contact>div{
+    height: 100%;
 }
 
 .add-contact p{
@@ -269,6 +273,12 @@ header i {
     color: white;
     border: none;
     border-radius: 8px;
+}
+
+#add-contact-input {
+    flex-grow: 1;
+    margin-right: 1rem;
+    padding: .4rem .8rem;
 }
 
 /* || CHAT */

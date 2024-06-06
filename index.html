@@ -74,11 +74,19 @@
                         <p v-if="contactsListLength === 0">La ricerca non ha prodotto risultati</p>
                     </div>
                     <!-- # add-contact -->
-                    <div class="add-contact flex align-center">
-                        <p>Add a new contact</p>
-                        <button class="flex justify-center align-center">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
+                    <div class="add-contact">
+                        <div v-if="addContactInput === false" class="flex align-center">
+                            <p>Add a new contact</p>
+                            <button class="flex justify-center align-center" @click="toggleAddContactInput()">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                        <div v-else class="flex align-center">
+                            <input  type="text" id="add-contact-input" placeholder="Contact name" v-model="newContactName">
+                            <button class="flex justify-center align-center" @click="addNewContact()">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
                     </div>
                 </section>
                 <!-- || chat -->
