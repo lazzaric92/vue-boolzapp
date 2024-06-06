@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boolzapp</title>
     <!-- Default Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,8 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- CSS -->
     <link rel="stylesheet" href="./css/style.css">
-    <!-- Vue3 -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Boolzapp</title>
 </head>
 <body>
     <div id="app">
@@ -58,7 +56,7 @@
                     <!-- # contacts-list -->
                     <div class="contacts-list-wrapper">
                         <ul class="contacts-list">
-                            <template v-for="(contact, contactIndex) in contacts" :id="contact.contactIndex">
+                            <template v-for="(contact, contactIndex) in contacts" :key="contact.contactIndex">
                                 <li class="flex space-between" v-if="(contact.visible === true)" :class="(contactIndex === activeContact && homeScreen === false) ? 'active' : '' "  @click="changeActiveContact(contactIndex)">
                                     <div class="flex align-start">
                                         <img :src="`${contact.avatar}.jpg`" alt="Contact avatar">
@@ -74,6 +72,13 @@
                             </template>
                         </ul>
                         <p v-if="contactsListLength === 0">La ricerca non ha prodotto risultati</p>
+                    </div>
+                    <!-- # add-contact -->
+                    <div class="add-contact flex align-center">
+                        <p>Add a new contact</p>
+                        <button class="flex justify-center align-center">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
                 </section>
                 <!-- || chat -->
@@ -145,6 +150,8 @@
         </div>
     </div>
 
+    <!-- Vue3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="./js/script.js"></script>
 </body>
 </html>

@@ -340,7 +340,6 @@ createApp({
             } else {
                 this.dyslexicFont = true;
             }
-            console.log(this.dyslexicFont)
         },
     },
     updated() {

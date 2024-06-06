@@ -210,7 +210,7 @@ header i {
 }
 
 .contacts-list-wrapper {
-    height: calc(100% - 145px);
+    height: calc(100% - 195px);
     background-color: var(--contacts);
     overflow-y: auto;
 }
@@ -244,6 +244,28 @@ header i {
     text-align: center;
     margin-top: .5rem;
     font-weight: bold;
+}
+
+.add-contact {
+    height: var(--header-height);
+    border-top: 1px solid var(--border);
+    background-color: var(--search-bar);
+    padding: 0 1.5rem;
+}
+
+.add-contact p{
+    color: var(--font);
+    flex-grow: 1;
+    text-align: center;
+}
+
+.add-contact button {
+    width: 35px;
+    height: 35px;
+    background-color: var(--background-top);
+    color: white;
+    border: none;
+    border-radius: 8px;
 }
 
 /* || CHAT */
